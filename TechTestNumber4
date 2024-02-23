@@ -1,0 +1,49 @@
+Question:
+Open this link 1to50 :
+a. How to find elements / selectors from the web user interface ?
+b. Please create a pseudocode or logic step to solve the following game using an automated
+test
+
+Answer:
+a. How to find elements / selectors from the web user interface ?
+Step to find elements/sekectors:
+1. Open search engine and go to some url (e.g. traveloka.com)
+2. Right click on the page and select “Inspect”
+3. Click “Elements Panel”
+4. Identify the element by focus in “id”, “name”, “class”.
+5. Click “Selector Tool”
+6. Right click then copy the “Selector” or “Xpath”
+
+b. Please create a pseudocode or logic step to solve the following game using an automated
+test
+
+Initialize web automation tool
+Navigate to Game URL "https://zzzscore.com/1to50/en/"
+
+// Wait for the game UI loaded
+Wait until the game UI is fully loaded
+
+// Start timer
+startTime = GetCurrentTime()
+
+currentNumber = 1 // Start with number 1, which the game requires clicking numbers in order
+
+While currentNumber <= 50:
+    // Find the element containing the current number
+    // Assumes the game's HTML structure uses identifiable elements for each number
+    numberElement = Find element on the page with text equal to currentNumber
+    
+    If numberElement exists:
+        Click numberElement
+        Increment currentNumber by 1
+    Else:
+        // Pop Up an warning
+        Print "Number element not found for " + currentNumber
+        // Implement wait or retry as the game load numbers dynamically
+
+// After clicking number 50, the game should be complete
+endTime = GetCurrentTime()
+
+// Calculate the total duration
+totalDuration = endTime - starTime
+Print "Congratulations! Game completed in" + totalDuration + "seconds"
