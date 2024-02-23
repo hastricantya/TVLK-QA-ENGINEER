@@ -1,0 +1,45 @@
+Question: 
+Analyze anomaly on screenshot below and elaborate whether it’s a FE or BE bug.
+a. Elaborate your analysis
+b. Create the bug report.
+
+Answer:
+a. Elaborate your analysis
+Elaborate Analysis:
+Currently user on Accommodations Landing Page
+Then, user search for "Jakarta" Region, Stay date on "Sat, 30 Apr 2022", for "1 night" and "1 room", "1 adult", and "0 children"
+After click search, then the result is:
+Showing result in "Bali" Region
+And then on the header only showing stay date (30 Apr 2022), 1 night, and 1 room.
+
+From analysis the bug comes from Backend. Because, the frontend only consumes every data that comes from the backend and it affects the result not expected by the request search.
+
+b. Create the bug report
+Title: [AC-BE-Hotel] Wrong Result on Hotel SRP (Search Result Page)
+Description:
+Steps to Reproduce:
+1. User in Accommodations Landing Page
+2. User search for "Jakarta" Region, Stay date on "Sat, 30 Apr 2022", for "1 night" and "1 room", "1 adult", and "0 children"
+3. User click "Search"
+
+Test Data:
+1. Region = Jakarta
+2. Date = Saturday, 30 April 2022
+3. Nights = 1
+4. Room = 1
+5. Adult = 1
+6. Children = 0
+
+Result:
+SRP (Search Result Page) in "Bali" Region.
+
+Expected Result:
+The SRP should gave the hotels in "Jakarta" region.
+
+Device: Iphone X and above
+Build Version: xx.xx
+
+Priority: High (P0: Should be fix immediately) (Urgency of Fixing)
+Severity: High (Effect on the application)
+
+Classification: Basic (When it is clearly written in product requirement)
