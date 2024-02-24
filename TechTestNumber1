@@ -1,0 +1,237 @@
+Question:
+Please write complete test cases for these Search hotel scenario:
+a. Check-in date should be not less than today and max 30 days from today
+b. Duration of stay, max 5 nights
+c. 1 Room must be at least 1 adult (max 5 adults in 1 room)
+d. and children (max 5 years old and max 2 children in 1 room) must be accompanied by min
+1 adult
+
+Answer:
+1. Search hotel check in date today
+Given user is on the hotel page
+When user search hotel with today date, fill amount of room, amount of adults 
+Then show the result based on the request 
+
+2. Search hotel check in is less than today (-)
+Given user is on the hotel page
+When user select the past dates
+Then unable to select the dates
+
+3. Search hotel check in is 30 days from today (-)
+Given user is on the hotel page
+When user select the 30 days from today
+Then unable to select the date
+
+4. Search hotel duration of stay 1 night
+Given user is on the hotel page
+When select destination Bandung, 1 Night , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result based on the request  (bandung, 1 nights, 1 adult, 1 room)
+
+5. Search hotel duration of stay 5 nights
+Given user is on the hotel page
+When select destination Bandung, 5 Nights , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more (bandung, 5 nights, 1 adult, 1 room)
+
+6. Search hotel duration of stay 6 night
+Given user is on the hotel page
+When select destination Bandung, 6 Nights , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more (bandung, 6 nights, 1 adult, 1 room)
+
+7. Search hotel with 0 adults for a room
+Given user is on the hotel page
+When select destination Bandung, 1 Nights , 0 adult, 1 room
+Then decrement button is disable
+
+8. Search hotel with 0 adults for 2 rooms
+Given user is on the hotel page
+When select destination Bandung, 1 Nights , 0 adult, 2 room
+And user adding the rooms
+Then showing validation message (number of rooms can’t be more than number of adult guest)
+
+9. Search hotel 1 adult in a room
+Given user is on the hotel page
+When select destination Bandung, 1 Nights , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more (bandung, 1 nights, 1 adult, 1 room)
+
+10. Search hotel 5 adult in a room
+Given user is on the hotel page
+When select destination Bandung, 1 Nights , 5 adults, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 5 guests or more (bandung, 1 nights, 5 guest, 1 room)
+
+11. Search hotel with 1 child (5 years old) 1 adult
+Given user is on the hotel page
+When select destination Bandung, 1 Nights , 1 adult, 1 child, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 2  guests or more (bandung, 1 night, 1 adult, 1 child, 1 room)
+
+12. Search hotel with 2 child (5 years old) with 1 adult
+Given user is on the hotel page
+When select destination Bandung, 1 Nights , 1 adult, 2 child (5 years, 5 years old), 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 3  guests or more (bandung, 1 night, 1 adult, 2 child, 1 room)
+
+13. Search hotel with 1 child (over 5 years old) with 1 adult
+Given user is on the hotel page
+When select destination Bandung, 1 Nights , 1 adult, 1 child (8 years), 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 2  guests or more  (bandung, 1 night, 1 adult, 1 child (8 years), 1 room)
+
+14. Search hotel with 2 child (5 year old) without adult
+Given user is on the hotel page
+When select destination Bandung, 1 Nights , 0 adult, 1 child (8 years), 1 room
+Then can’t select decreasing adult less than 1
+
+15. Search hotel 2 nights 1 room 1 adult
+Given user is on the hotel page
+When select destination Bandung, 2 Nights , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1  guests or more  (bandung, 2 night, 1 adult), 1 room)
+
+16. Search hotel 2 nights 2 room 1 adult (-)
+Given user is on the hotel page
+When select destination Bandung, 2 Nights , 1 adult, 2 room
+Then showing validation message (number of rooms can’t be more than number of adult guest)
+
+17. Search hotel 2 nights 2 room 1 adult 1 child (-)
+Given user is on the hotel page
+When select destination Bandung, 2 Nights , 1 adult,1 child,  2 room
+Then showing validation message (number of rooms can’t be more than number of adult guest)
+
+18. Search hotel 2 nights 1 room 1 adult 2 child 
+Given user is on the hotel page
+When select destination Bandung, 2 Nights , 1 adult, 1 room, 2 child  (8 years, 5 years)
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 3  guests or more  (bandung, 1 night, 1 adult, 2 child (8 years, 5 years), 1 room)
+
+19. Search hotel 2 nights 1 room 1 adult 3 children 
+Given user is on the hotel page
+When select destination Bandung, 2 Nights , 1 adult, 1 room, 3 child  (8 years, 5 years, 7years)
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 4  guests or more  (bandung, 1 night, 1 adult, 2 child (8 years, 5 years, 7years), 1 room)
+
+20. Search hotel 3 nights 2 rooms 2 adult for today date
+Given user is on the hotel page
+When select destination Bandung, 3 Nights , 2 adult, 2 rooms
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1  adults or more  (bandung, 2 nights, 2 adults, 2 rooms)
+
+21. Search hotel 3 nights 2 rooms 2 adult for next week
+Given user is on the hotel page
+And currently is 24 feb
+When select destination Bandung, 3 Nights , 2 adults, 2 rooms for 28 feb
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 2  adults or more  (bandung, 3 nights, 2 adults, 2 rooms)
+
+22. Search hotel 3 nights 2 rooms 2 adult for next week
+Given user is on the hotel page
+And currently is 24 feb
+When select destination Bandung, 3 Nights , 2 adults, 2 rooms for 28 feb
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 2  adults or more  (bandung, 3 nights, 2 adults, 2 rooms)
+
+23. Search hotel 3 nights 2 rooms 2 adult for next 2 weeks
+Given user is on the hotel page
+And currently is 24 feb
+When select destination Bandung, 3 Nights , 2 adults, 2 rooms for 5 march
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 2  adults or more  (bandung, 3 nights, 2 adults, 2 rooms)
+
+24. Search hotel 4 nights 1 room 1 adult
+Given user is on the hotel page
+When select destination Bandung, 4 Nights , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more  (bandung, 4 night, 1 adult), 1 room)
+
+25.Search hotel 4 nights 1 room 2 adults
+Given user is on the hotel page
+When select destination Bandung, 4 Nights , 2 adults, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more  (bandung, 4 nights, 2 adults), 1 room)
+
+26. Search hotel 4 nights 2  room 1 adult (-)
+Given user is on the hotel page
+When select destination Bandung, 4 Nights , 1 adult, 2 room
+Then showing validation message (number of rooms can’t be more than number of adult guest)
+
+27. Search hotel 4 nights 2  room 2 adults 2 children
+Given user is on the hotel page
+When select destination Bandung, 4 Nights , 2 adults, 1 room, 2 child  (8 years, 7years)
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 4  guests or more  (bandung, 4 nights, 1 adult, 2 child (8 years, 7years), 2 rooms)
+
+28. Search hotel 4 nights 2  room 2 adult 4 children
+Given user is on the hotel page
+When select destination Bandung, 4 Nights , 2 adults, 2 rooms, 4 child  (8 years, 7years,8 years, 7years)
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 6  guests or more  (bandung, 4 nights, 1 adult, 4 child (8 years, 7years,8 years, 7years), 2 rooms)
+
+29. Search hotel 5 nights 1 room 1 adult 2 children
+Given user is on the hotel page
+When select destination Bandung, 5 Nights , 1 adults, 1 rooms, 2 child  (8 years, 7years)
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 3  guests or more  (bandung, 5 nights, 1 adult, 2 child (8 years, 7years), 1 room)
+
+30. Search hotel 5 nights 3 rooms 6 adult 6 children
+Given user is on the hotel page
+When select destination Bandung, 5 Nights , 6 adults, 3 rooms, 6 child  (8 years, 7years,8 years, 7years, 9 years, 2years)
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 12  guests or more  (bandung, 4 nights, 1 adult, 4 child (8 years, 7years,8 years, 7years,, 9 years, 2years), 3 rooms)
+
+31. Search hotel with region location
+Given user is on the hotel page
+When select destination JAKARTA, 1 Night , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more (bandung, 1 night, 1 adult, 1 room) IN JAKARTA
+
+32. Search hotel with city location
+Given user is on the hotel page
+When select destination MALANG, 1 Night , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more (bandung, 1 night, 1 adult, 1 room) IN MALANG
+
+33. Search hotel with area location
+Given user is on the hotel page
+When select destination TANAH ABANG, 1 Night , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more (bandung, 1 night, 1 adult, 1 room) IN TANAH ABANG
+
+34. Search hotel with near me location
+Given user is on the hotel page
+And currenctly position in Slipi
+And fill data with 1 Nights , 1 adult, 1 room
+WHEN user click pointer icon with 1 Nights , 1 adult, 1 room
+And destination field changed to "hotel di sektiar saya/near me hotels"
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more (bandung, 1 night, 1 adult, 1 room) IN SLIPI  
+
+35. Search hotel with landmark location
+Given user is on the hotel page
+When select destination MONUMEN NASIONAL, 1 Night , 1 adult, 1 room
+And show check out date is correct with the amount of night duration
+Then show the result hotels & rooms that can occupied by 1 guests or more (bandung, 1 night, 1 adult, 1 room) NEAR MONUMEN NASIONAL
+
+36. Search hotel using selecting location on map
+Given user is on the hotel page
+And fill data with 1 Nights , 1 adult, 1 room
+When selecting map
+Then showing map with hotels near the user location, and user can scroll to check another area
+
+37. Search hotel using selecting location on map FOR THE FIRST TIME
+Given user is on the hotel page
+And fill data with 1 Nights , 1 adult, 1 room
+When selecting map
+AND Showing pop up permission to acces location
+Then showing map with hotels near the user location, and user can scroll to check another area
+
+38. Search hotel using last viewed
+Given user is on the hotel page
+When user click last viewed
+Then showing list of hotels that already viewed previously
+
+
+
